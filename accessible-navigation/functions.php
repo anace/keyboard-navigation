@@ -77,7 +77,10 @@ add_action( 'after_setup_theme', 'accessible_navigation_content_width', 0 );
 function accessible_navigation_scripts() {
 	wp_enqueue_style( 'accessible-navigation-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'accessible-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	// Add Dashicons font, used in the main stylesheet.
+	wp_enqueue_style( 'dashicons', get_theme_file_uri() . '/css/dashicons.css', array(), '20190715' );
+
+	wp_enqueue_script( 'accessible-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20190715', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

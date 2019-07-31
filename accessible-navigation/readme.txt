@@ -7,7 +7,7 @@ Requires at least: 4.9
 Tested up to: 5.2.2
 Version: 1.0.0
 License: GNU General Public License v2 or later
-License URI: LICENSE
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
 A mini theme called Accessible Navigation which aims to provide a working example of keyboard navigation.
 
