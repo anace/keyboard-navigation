@@ -51,7 +51,6 @@
 				this.setAttribute( 'aria-expanded', 'false' );
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
 				submenu.setAttribute( 'aria-expanded', 'false' );
-
 			} else {
 				parentLink.className += ' toggled-on';
 				this.setAttribute( 'aria-expanded', 'true' );
@@ -59,7 +58,6 @@
 				submenu.setAttribute( 'aria-expanded', 'true' );
 			}
 		}
-		
 	}
 
 	// Hide menu toggle button if menu is empty and return early.
