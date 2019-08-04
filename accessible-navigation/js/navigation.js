@@ -57,7 +57,7 @@
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseChild;
 				submenu.setAttribute( 'aria-expanded', 'true' );
 			}
-		}
+		};
 	}
 
 	// Hide menu toggle button if menu is empty and return early.
