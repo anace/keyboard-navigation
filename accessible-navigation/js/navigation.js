@@ -22,43 +22,42 @@
 	parentLink = container.querySelectorAll( '.menu-item-has-children, .page_item_has_children' );
 
 	for ( i = 0, len = parentLink.length; i < len; i++ ) {
-		var dropdown = document.createElement('button');
-		var submenu = parentLink[i].querySelector('.sub-menu');
-		var icon = document.createElement('span');
-		var screenreadertext = document.createElement('span');
+		var dropdown = document.createElement( 'button' ),
+			submenu = parentLink[i].querySelector( '.sub-menu' ),
+			icon = document.createElement( 'span' ),
+			screenreadertext = document.createElement( 'span' );
 
-		parentLink[i].insertBefore( dropdown, submenu );
-
-		dropdown.classList.add('dropdown-toggle');
-		dropdown.setAttribute('aria-controls', 'sub-menu');
-		dropdown.setAttribute( 'aria-expanded', 'false' );
 		submenu.setAttribute( 'aria-expanded', 'false' );
-		dropdown.appendChild(icon);
-		dropdown.appendChild(screenreadertext);
-		icon.classList.add('dashicons');
+
+		icon.classList.add( 'dashicons' );
 		icon.setAttribute( 'aria-hidden', 'true' );
-		screenreadertext.classList.add('screen-reader-text');
+
+		screenreadertext.classList.add( 'screen-reader-text' );
 		screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
 
+		parentLink[i].insertBefore( dropdown, submenu );
+		dropdown.classList.add( 'dropdown-toggle' );
+		dropdown.setAttribute( 'aria-controls', 'sub-menu' );
+		dropdown.setAttribute( 'aria-expanded', 'false' );
+		dropdown.appendChild( icon );
+		dropdown.appendChild( screenreadertext );
 		dropdown.onclick = function() {
-			parentLink = this.parentElement;
-			submenu = parentLink.querySelector('.sub-menu');
-			screenreadertext = this.childNodes[1];
+			var parentLink = this.parentElement,
+				submenu = parentLink.querySelector( '.sub-menu' ),
+				screenreadertext = this.childNodes[1];
 
-		if ( -1 !== parentLink.className.indexOf( 'toggled-on' ) ) {
-			parentLink.className = parentLink.className.replace( ' toggled-on', '' );
-			this.setAttribute( 'aria-expanded', 'false' );
-			screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
-			submenu.setAttribute( 'aria-expanded', 'false' );
-			
-		} else {
-			parentLink.className += ' toggled-on';
-			this.setAttribute( 'aria-expanded', 'true' );
-			screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseChild;
-			submenu.setAttribute( 'aria-expanded', 'true' );
-		}
-	}
-		
+			if ( -1 !== parentLink.className.indexOf( 'toggled-on' ) ) {
+				parentLink.className = parentLink.className.replace( ' toggled-on', '' );
+				this.setAttribute( 'aria-expanded', 'false' );
+				screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
+				submenu.setAttribute( 'aria-expanded', 'false' );
+			} else {
+				parentLink.className += ' toggled-on';
+				this.setAttribute( 'aria-expanded', 'true' );
+				screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseChild;
+				submenu.setAttribute( 'aria-expanded', 'true' );
+			}
+		};
 	}
 
 	// Hide menu toggle button if menu is empty and return early.
@@ -85,7 +84,7 @@
 	};
 
 	// Get all the link elements within the menu.
-	links    = menu.getElementsByTagName( 'a' );
+	links = menu.getElementsByTagName( 'a' );
 
 	// Each time a menu link is focused or blurred, toggle focus.
 	for ( i = 0, len = links.length; i < len; i++ ) {
