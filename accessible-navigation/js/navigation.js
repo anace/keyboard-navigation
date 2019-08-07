@@ -37,7 +37,6 @@
 
 		parentLink[i].insertBefore( dropdown, submenu );
 		dropdown.classList.add( 'dropdown-toggle' );
-		dropdown.setAttribute( 'aria-controls', 'sub-menu' );
 		dropdown.setAttribute( 'aria-expanded', 'false' );
 		dropdown.appendChild( icon );
 		dropdown.appendChild( screenreadertext );
