@@ -87,10 +87,10 @@ function accessible_navigation_scripts() {
 	}
 
 	wp_localize_script( 'accessible-navigation', 'accessibleNavigationScreenReaderText', array(
-		'expand'   => __( 'expand main menu', 'accessible-navigation' ),
-		'collapse' => __( 'collapse main menu', 'accessible-navigation' ),
-		'expandChild'   => __( 'expand child menu', 'accessible-navigation' ),
-		'collapseChild' => __( 'collapse child menu', 'accessible-navigation' ),
+		'expandMain'   => __( 'Open the main menu', 'accessible-navigation' ),
+		'collapseMain' => __( 'Close the main menu', 'accessible-navigation' ),
+		'expandChild'   => __( 'expand submenu', 'accessible-navigation' ),
+		'collapseChild' => __( 'collapse submenu', 'accessible-navigation' ),
 	) );
 }
 add_action( 'wp_enqueue_scripts', 'accessible_navigation_scripts' );

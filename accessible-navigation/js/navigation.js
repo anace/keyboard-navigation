@@ -7,7 +7,7 @@
 ( function() {
 	var container, button, dropdown, icon, screenreadertext, parentLink, menu, submenu, links, i, len;
 
-	container = document.getElementById( 'main-navigation' );
+	container = document.getElementById( 'masthead' );
 	if ( ! container ) {
 		return;
 	}
@@ -17,7 +17,15 @@
 		return;
 	}
 
-	menu = container.getElementsByTagName( 'ul' )[0];
+	
+	menu = container.getElementsByTagName( 'nav' )[0];
+	console.log(container.querySelectorAll( '.menu' ) );
+	console.log( container.getElementsByTagName( 'nav' )[0] );
+
+	screenreadertext = document.createElement( 'span' );
+	screenreadertext.classList.add( 'screen-reader-text' );
+	screenreadertext.textContent = accessibleNavigationScreenReaderText.expandMain;
+	button.appendChild( screenreadertext );
 
 	parentLink = container.querySelectorAll( '.menu-item-has-children, .page_item_has_children' );
 
@@ -38,18 +46,21 @@
 		dropdown.setAttribute( 'aria-expanded', 'false' );
 		dropdown.appendChild( icon );
 		dropdown.appendChild( screenreadertext );
+
 		dropdown.onclick = function() {
 			var parentLink = this.parentElement,
 				submenu = parentLink.querySelector( '.sub-menu' ),
-				screenreadertext = this.childNodes[1];
+				screenreadertext = this.querySelector( '.screen-reader-text' );
 
 			if ( -1 !== parentLink.className.indexOf( 'toggled-on' ) ) {
 				parentLink.className = parentLink.className.replace( ' toggled-on', '' );
 				this.setAttribute( 'aria-expanded', 'false' );
+				submenu.setAttribute ( 'aria-expanded', 'false');
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
 			} else {
 				parentLink.className += ' toggled-on';
 				this.setAttribute( 'aria-expanded', 'true' );
+				submenu.setAttribute ( 'aria-expanded', 'true');
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseChild;
 			}
 		};
@@ -62,24 +73,29 @@
 	}
 
 	menu.setAttribute( 'aria-expanded', 'false' );
-	if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
-		menu.className += ' nav-menu';
-	}
+		if ( -1 === menu.className.indexOf( 'nav-menu' ) ) {
+			menu.className += ' nav-menu';
+		}
 
 	button.onclick = function() {
+		screenreadertext = this.querySelector( '.screen-reader-text' );
 		if ( -1 !== container.className.indexOf( 'toggled' ) ) {
 			container.className = container.className.replace( ' toggled', '' );
 			button.setAttribute( 'aria-expanded', 'false' );
+			screenreadertext.textContent = accessibleNavigationScreenReaderText.expandMain;
 			menu.setAttribute( 'aria-expanded', 'false' );
 		} else {
 			container.className += ' toggled';
 			button.setAttribute( 'aria-expanded', 'true' );
+			screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseMain;
 			menu.setAttribute( 'aria-expanded', 'true' );
 		}
 	};
 
-	// Get all the link elements within the menu.
+	// Get all the link elements within the primary menu.
+
 	links = menu.getElementsByTagName( 'a' );
+	console.log(links);
 
 	// Each time a menu link is focused or blurred, toggle focus.
 	for ( i = 0, len = links.length; i < len; i++ ) {
@@ -98,13 +114,13 @@
 
 			// On li elements toggle the class .focus.
 			if ( 'li' === self.tagName.toLowerCase() ) {
+				
 				if ( -1 !== self.className.indexOf( 'focus' ) ) {
 					self.className = self.className.replace( ' focus', '' );
 				} else {
 					self.className += ' focus';
 				}
 			}
-
 			self = self.parentElement;
 		}
 	}

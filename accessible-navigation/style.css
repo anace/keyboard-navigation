@@ -672,10 +672,8 @@ a:hover, a:active {
 /* Styling the toggle buttons */
 .menu-toggle {
 	background-color: #ff0058;
-	padding: 1em 0.8125em 0.8125em;
-	/*! margin: 0 0 2px 1em; */	
+	padding: 0.75em 0.625em 0.625em 0.75em;
 	color: #fff;
-	font-size: 18px;
 	font-size: 1.125em;
 	text-decoration: none;
 	border: 1px solid #cc0058;
@@ -684,6 +682,10 @@ a:hover, a:active {
 	position: absolute;
 	top: 1em;
 	right: 1em;
+}
+
+.menu-toggle .dashicons {
+	vertical-align: text-bottom;
 }
 
 .menu-toggle .dashicons:before {
@@ -703,9 +705,9 @@ a:hover, a:active {
 	padding: 1.1em;
 	position: absolute;
 	top: 1em;
-	right: 1em;
+	right: 0.5em;
 	border: 1px solid transparent;
-	border-left: 1px dashed;
+	border-left: 1px solid #bbb;
 	border-radius: 0;
 	color: #fff;
 	text-align: center;
@@ -730,6 +732,7 @@ a:hover, a:active {
 
 /* Hide Submenus by default using absolute positioning instead of display:none;. */
 .site-navigation .menu,
+.site-navigation .menu li,
 .site-navigation .menu ul,
 .site-navigation .menu li:hover > ul,
 .site-navigation .menu li:focus > ul {
@@ -751,6 +754,7 @@ a:hover, a:active {
 
 .toggled .menu li {
 	position: relative;
+	left: unset;
 }
 
 .toggled .menu li > .sub-menu {
@@ -925,27 +929,7 @@ main {
 .site-branding {
 }
 
-@media screen and (min-width: 37.5em) {
-/*
-1. Normalize
-2. Typography
-3. Elements
-4. Forms
-
-6. Accessibility
-7. Alignments
-8. Clearings
-9. Widgets
-
-11. Content
-	11.1 Posts and pages
-	11.2 Comments
-12. Media and Blocks
-	12.1 Captions
-	12.2 Galleries
-	12.3 Blocks
-13. Infinite scroll
-*/
+@media screen and (min-width: 769px) {
 
 /*
 5. Navigation
@@ -959,19 +943,25 @@ main {
 	display: none;
 }
 
-.site-navigation .primary-menu {
+.site-navigation {
 	display: flex;
-	position: relative;
-	left: unset;
+	align-items: start;
+}
+
+.site-navigation .primary-menu,
+.site-navigation .social-menu {
+	display: flex;
+	position: static;
 }
 
 .site-navigation .social-menu {
-	display: none;
+	border-left: 1px solid #bbb;
 }
 
 .site-navigation .menu li {
 	position: relative;
 	width: auto;
+	left: unset;
 }
 
 .site-navigation .menu ul li:first-child {
@@ -995,7 +985,7 @@ main {
 	/*! border: 1px solid #606060; */
 }
 	
-/* Display Dropdowns on Hover */
+/* Display Dropdowns on hover and focus */
 .site-navigation .menu li:hover > ul,
 .site-navigation .menu li:focus > ul,
 .site-navigation .menu li.focus > ul {
@@ -1025,13 +1015,24 @@ main {
 	color: #222;
 }
 
-/* The icon for opening and closing the submenus */
-.menu li > a:after {
-	content: " +";
+.menu-item-has-children > a:after,
+.page_item_has_children > a:after {
+	font-family: dashicons;
+	content: '\f347';
+	vertical-align: bottom;
+	margin-left: 0.25em;
 }
 
-li > a:only-child:after {
-	content: '';
+.menu-item-has-children .menu-item-has-children > a:after,
+.menu-item-has-children .page_item_has_children > a:after,
+.page_item_has_children .menu-item-has-children > a:after,
+.page_item_has_children .page_item_has_children > a:after {
+	content: '\f345';
+	font-family: dashicons;
+	position: absolute;
+	right: 0;
+	top: 50%;
+	transform: translate(0, -50%);
 }
 
 /* 10. Header, Main and Footer  */

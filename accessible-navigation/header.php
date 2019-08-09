@@ -26,7 +26,7 @@
 <div id="page" class="site">
 	<a class="skip-link screen-reader-text" href="#content"><?php esc_html_e( 'Skip to content', 'accessible-navigation' ); ?></a>
 
-	<header id="masthead" class="site-header">
+	<header id="masthead" class="site-header" role="banner">
 		<div class="site-branding">
 			<?php
 			the_custom_logo();
@@ -34,11 +34,12 @@
 			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
 			<p class="site-description"><?php echo get_bloginfo( 'description', 'display' ) ?></p>
 		</div><!-- .site-branding -->
+		<button class="menu-toggle" aria-controls="main-navigation" aria-expanded="false" type="button">
+			<span aria-hidden="true"><?php _e( 'Menu', 'accessible-navigation' ); ?></span>
+			<span class="dashicons" aria-hidden="true"></span>
+		</button>
 
-		<nav id="main-navigation" class="site-navigation primary-navigation">
-			<button class="menu-toggle" aria-controls="menu" aria-expanded="false"><?php _e( 'Menu', 'accessible-navigation' ); ?>
-				<span class="dashicons" aria-hidden="true"></span>
-			</button>
+		<nav id="main-navigation" class="site-navigation primary-navigation" role="navigation">
 			<?php
 			wp_nav_menu( array(
 				'theme_location' => 'primary',
