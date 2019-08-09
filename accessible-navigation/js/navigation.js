@@ -27,8 +27,6 @@
 			icon = document.createElement( 'span' ),
 			screenreadertext = document.createElement( 'span' );
 
-		submenu.setAttribute( 'aria-expanded', 'false' );
-
 		icon.classList.add( 'dashicons' );
 		icon.setAttribute( 'aria-hidden', 'true' );
 
@@ -49,12 +47,10 @@
 				parentLink.className = parentLink.className.replace( ' toggled-on', '' );
 				this.setAttribute( 'aria-expanded', 'false' );
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.expandChild;
-				submenu.setAttribute( 'aria-expanded', 'false' );
 			} else {
 				parentLink.className += ' toggled-on';
 				this.setAttribute( 'aria-expanded', 'true' );
 				screenreadertext.textContent = accessibleNavigationScreenReaderText.collapseChild;
-				submenu.setAttribute( 'aria-expanded', 'true' );
 			}
 		};
 	}
