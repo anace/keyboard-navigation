@@ -17,10 +17,7 @@
 		return;
 	}
 
-	
 	menu = container.getElementsByTagName( 'nav' )[0];
-	console.log(container.querySelectorAll( '.menu' ) );
-	console.log( container.getElementsByTagName( 'nav' )[0] );
 
 	screenreadertext = document.createElement( 'span' );
 	screenreadertext.classList.add( 'screen-reader-text' );
@@ -95,7 +92,6 @@
 	// Get all the link elements within the primary menu.
 
 	links = menu.getElementsByTagName( 'a' );
-	console.log(links);
 
 	// Each time a menu link is focused or blurred, toggle focus.
 	for ( i = 0, len = links.length; i < len; i++ ) {
